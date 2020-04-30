@@ -1,7 +1,4 @@
 
-
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Restaurant;
 import com.example.demo.service.RestaurantService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
@@ -28,7 +27,7 @@ public class RestaurantController {
 		this.restaurantService = restaurantService;
 	}
 	
-	
+	@ApiOperation(value = "Create a restaurant")
 	@PostMapping("/restaurant/")
 	public Restaurant createRestaurant(@RequestBody Restaurant restaurant)
 	{
@@ -37,12 +36,14 @@ public class RestaurantController {
 		return restra;
 	}
 	
+	@ApiOperation(value = "Retrieve the restaurant details",response = Restaurant.class)
 	@GetMapping("/restaurant/{id}")
-	public Optional<Restaurant> getRestaurantById(@PathVariable Integer id){
+	public Restaurant getRestaurantById(@PathVariable Integer id){
 		
 		return restaurantService.getRestaurantById(id);
 	}
 	
+	@ApiOperation(value = "Update the restaurant details")
 	@PutMapping("/restaurant/{id}")
 	public Restaurant updateRestaurant(@RequestBody Restaurant restaurant,@PathVariable Integer id) {
 		
@@ -55,6 +56,7 @@ public class RestaurantController {
 		return rest;
 	}
 	
+	@ApiOperation(value = "Remove the restaurant details")
 	@DeleteMapping("/restaurant/{id}")
 	public void deleteRestaurantById(@PathVariable Integer id) {
 		
