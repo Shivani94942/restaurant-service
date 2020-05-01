@@ -1,21 +1,17 @@
-package com.example.demo.service;
+package com.restaurant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.RestaurantDao;
-import com.example.demo.model.Restaurant;
+import com.restaurant.dao.RestaurantDao;
+import com.restaurant.model.Restaurant;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 	
+	@Autowired
 	private RestaurantDao restaurantDao;
 	
-	@Autowired
-	public RestaurantServiceImpl(RestaurantDao restaurantDao) {
-		super();
-		this.restaurantDao = restaurantDao;
-	}
 
 	@Override
 	public Restaurant createRestaurant(Restaurant restaurant) {

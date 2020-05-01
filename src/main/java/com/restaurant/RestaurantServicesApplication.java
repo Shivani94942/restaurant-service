@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.restaurant;
 
 import java.util.Collections;
 

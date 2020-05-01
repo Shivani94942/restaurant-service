@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.restaurant.service;
 
-import com.example.demo.model.Restaurant;
+import com.restaurant.model.Restaurant;
 
 
 public interface RestaurantService {
