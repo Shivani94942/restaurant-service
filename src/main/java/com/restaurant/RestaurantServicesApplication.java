@@ -2,8 +2,10 @@ package com.restaurant;
 
 import java.util.Collections;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -19,8 +21,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-
-public class RestaurantServicesApplication {
+@EnableDiscoveryClient
+public class RestaurantServicesApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestaurantServicesApplication.class, args);
@@ -32,7 +34,7 @@ public class RestaurantServicesApplication {
 	  return new Docket(DocumentationType.SWAGGER_2)
 			  .select()
 			  .paths(PathSelectors.any())
-			  .apis(RequestHandlerSelectors.basePackage("com.example.demo")) 
+			  .apis(RequestHandlerSelectors.basePackage("com.restaurant")) 
 			  .build()
 			  .apiInfo(apiDetails());
 	}
@@ -49,6 +51,12 @@ public class RestaurantServicesApplication {
 					"API license", 
 					"http://restaurant.io",					
 					Collections.emptyList());
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
