@@ -1,5 +1,7 @@
 package com.restaurant.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public Restaurant getRestaurantById(Integer id) {
+	public Optional<Restaurant> getRestaurantById(Integer id) {
 		// TODO Auto-generated method stub
-		return restaurantDao.findById(id).get();
+		return restaurantDao.findById(id);
 	}
 
 	@Override

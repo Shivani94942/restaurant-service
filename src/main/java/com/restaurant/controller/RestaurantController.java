@@ -1,6 +1,7 @@
 package com.restaurant.controller;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -69,16 +70,22 @@ public class RestaurantController {
 	
 	@ApiOperation(value = "Retrieve the restaurant details",response = Restaurant.class)
 	@GetMapping("/restaurant/{id}")
-	public Restaurant getRestaurantById(@PathVariable Integer id){
+	public Optional<Restaurant> getRestaurantById(@PathVariable Integer id){
 		
-		//return restaurantService.getRestaurantById(id);
+		Optional<Restaurant> r = null;
 		if(restaurantService.getRestaurantById(id)==null)
 			
 		{
+			throw new IdNotFoundException("No value present");
+		}
+		else if(restaurantService.getRestaurantById(id).isPresent()) {
+			
+		     r= restaurantService.getRestaurantById(id);
+		}
+		else {
 			throw new IdNotFoundException("The id is not found : "+id);
 		}
-		
-	return restaurantService.getRestaurantById(id);
+	return r;
 	}
 	
 	@ApiOperation(value = "Update the restaurant details")
